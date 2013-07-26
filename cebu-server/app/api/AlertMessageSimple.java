@@ -12,7 +12,7 @@ public class AlertMessageSimple {
 
     public Long id;
     public Date timestamp;
-    public String description;
+    public String generalDescription;
     public String account;
 
 
@@ -20,7 +20,7 @@ public class AlertMessageSimple {
     {
         this.id = message.id;
     	this.timestamp = message.timestamp;
-    	this.description = message.description;
+    	this.generalDescription = message.generalDescription;
 
         this.account = message.account.username;
     	

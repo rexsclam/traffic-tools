@@ -22,11 +22,17 @@
 		<br/>
 		<strong>Publicly Visible</strong> <input type="checkbox" id="publiclyVisible" {{#if publiclyVisible}}checked{{/if}}/>
 		<br/>
+		<strong>General Description</strong><br/>
+		<textarea class="span11"  id="generalDescription" placeholder="General description...">{{ generalDescription }}</textarea>
+		<strong>Location Description</strong><br/>
+		<textarea class="span11" id="locationDescription" placeholder="Location description...">{{ locationDescription }}</textarea>
+		
+		<!--
 		<strong>CITOM Description</strong><br/>
 		<textarea class="span11"  id="description" placeholder="CITOM description...">{{ description }}</textarea>
 		<strong>Public Description</strong><br/>
 		<textarea class="span11" id="publicDescription" placeholder="Public description...">{{ publicDescription }}</textarea>
-		
+		-->
 	</div>
 
 	<div class="row-fluid">
@@ -74,8 +80,8 @@
 	<h3><img src="/public/images/alert_icons/{{ type }}.png"> {{ title }}</h3>	
 	<strong>Type:</strong> {{alertType type}}<br/>
 	<strong>Publicly Visible:</strong> {{#if publiclyVisible}}Yes{{else}}No{{/if}}<br/>
-	<strong>Description:</strong> {{description}}<br/>
-	<strong>Public Description:</strong> {{publicDescription}}<br/>
+	<strong>General Description:</strong> {{generalDescription}}<br/>
+	<strong>Location Description:</strong> {{locationDescription}}<br/>
 	<strong>Active From:</strong> {{formatDate activeFrom }}<br/>
 	<strong>Active To:</strong> {{formatDate activeTo }}<br/>
 	{{#if messages }}
@@ -87,7 +93,7 @@
 				
 
 				<em>{{formatDate timestamp }}</em> ({{ account }}) <br/>
-				{{ description }}
+				{{ generalDescription }}
 				<hr style="margin: 5px 0;">
 			{{/messages}}
 		</div>

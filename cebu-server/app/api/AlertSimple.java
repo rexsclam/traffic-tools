@@ -20,9 +20,9 @@ public class AlertSimple {
     public Double locationLat;
     public Double locationLon;
 
-    public String description;
+    public String generalDescription;
 
-    public String publicDescription;
+    public String locationDescription;
 
     public String account;
 
@@ -42,11 +42,11 @@ public class AlertSimple {
     	this.locationLat = alert.locationLat;
         this.locationLon = alert.locationLon;
 
-        this.publicDescription = alert.publicDescription;
+        this.locationDescription = alert.locationDescription;
         this.publiclyVisible = alert.publiclyVisible;
         
         if(shareAll) {
-	    	this.description = alert.description;
+	    	this.generalDescription = alert.generalDescription;
 	       
 	        this.account = alert.account.username;
 	

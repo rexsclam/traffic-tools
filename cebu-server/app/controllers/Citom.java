@@ -198,9 +198,9 @@ public class Citom extends Controller {
 				query = "%" +  query.toLowerCase() + "%";
 
 				if(type != null && !type.isEmpty())
-					alerts = Alert.find("(lower(description) like ? or lower(publicdescription) like ? or lower(title) like ?) and activeTo is null and type = ?", query, query, query, type).fetch();
+					alerts = Alert.find("(lower(generalDescription) like ? or lower(locationDescription) like ? or lower(title) like ?) and activeTo is null and type = ?", query, query, query, type).fetch();
 				else
-					alerts = Alert.find("(lower(description) like ? or lower(publicdescription) like ? or lower(title) like ?) and activeTo is null ", query, query, query).fetch();
+					alerts = Alert.find("(lower(generalDescription) like ? or lower(locationDescription) like ? or lower(title) like ?) and activeTo is null ", query, query, query).fetch();
 			}
 			else
 			{
@@ -217,9 +217,9 @@ public class Citom extends Controller {
 				query = "%" +  query.toLowerCase() + "%";
 
 				if(type != null && !type.isEmpty())
-					alerts = Alert.find("(lower(description) like ? or lower(publicdescription) like ? or lower(title) like ?) or (activeFrom >= ? and (activeTo <= ? or activeTo is null)) and type = ?", query, query, query, from, to, type).fetch();
+					alerts = Alert.find("(lower(generalDescription) like ? or lower(locationDescription) like ? or lower(title) like ?) or (activeFrom >= ? and (activeTo <= ? or activeTo is null)) and type = ?", query, query, query, from, to, type).fetch();
 				else
-					alerts = Alert.find("(lower(description) like ? or lower(publicdescription) like ? or lower(title) like ?) orctiveFrom >= ? and (activeTo <= ? or activeTo is null)) ", query, query, query, from, to).fetch();
+					alerts = Alert.find("(lower(generalDescription) like ? or lower(locationDescription) like ? or lower(title) like ?) orctiveFrom >= ? and (activeTo <= ? or activeTo is null)) ", query, query, query, from, to).fetch();
 			}
 			else
 			{
@@ -245,7 +245,7 @@ public class Citom extends Controller {
 			StringWriter csvString = new StringWriter();
 			CSVWriter csvWriter = new CSVWriter(csvString);
 			
-			String[] headerBase = "type, activeFrom, activeTo, user, description, publicDescription,  lat, lon".split(",");
+			String[] headerBase = "type,activeFrom,activeTo,user,generalDescription,locationDescription,lat,lon".split(",");
 			
 			csvWriter.writeNext(headerBase);
 			 
@@ -259,12 +259,12 @@ public class Citom extends Controller {
 				else
 					dataFields[2] = "";
 				dataFields[3] = alert.account.username;
-				if(alert.description != null)
-					dataFields[4] = alert.description;
+				if(alert.generalDescription != null)
+					dataFields[4] = alert.generalDescription;
 				else
 					dataFields[4] = "";
-				if(alert.publicDescription != null)
-					dataFields[5] = alert.publicDescription;
+				if(alert.locationDescription != null)
+					dataFields[5] = alert.locationDescription;
 				else
 					dataFields[5] = "";
 				dataFields[6] = alert.locationLat.toString();
@@ -281,7 +281,7 @@ public class Citom extends Controller {
 					messageFields[0] = "-";
 					messageFields[1] = message.timestamp.toString();
 					messageFields[3] = message.account.username;
-					messageFields[5] = message.description;
+					messageFields[5] = message.generalDescription;
 					
 					csvWriter.writeNext(messageFields);
 				}
@@ -438,7 +438,7 @@ public static void alertsCsv(Boolean active, String filter, String fromDate, Str
 
 		AlertMessage newMessage = new AlertMessage();
 		newMessage.alert = alert;
-		newMessage.description = message;
+		newMessage.generalDescription = message;
 		newMessage.timestamp = new Date();
 		newMessage.account = Security.getAccount();
 		newMessage.save();
@@ -472,8 +472,8 @@ public static void alertsCsv(Boolean active, String filter, String fromDate, Str
             newAlert.title = alert.title;
 			newAlert.locationLat = alert.locationLat;
 			newAlert.locationLon = alert.locationLon;
-			newAlert.description = alert.description;
-			newAlert.publicDescription = alert.publicDescription;
+			newAlert.generalDescription = alert.generalDescription;
+			newAlert.locationDescription = alert.locationDescription;
 			newAlert.type = alert.type;
 			newAlert.publiclyVisible = alert.publiclyVisible;
 			newAlert.account = Security.getAccount();
@@ -508,8 +508,8 @@ public static void alertsCsv(Boolean active, String filter, String fromDate, Str
             updatedAlert.title = alert.title;
 			updatedAlert.locationLat = alert.locationLat;
 			updatedAlert.locationLon = alert.locationLon;
-			updatedAlert.description = alert.description;
-			updatedAlert.publicDescription = alert.publicDescription;
+			updatedAlert.generalDescription = alert.generalDescription;
+			updatedAlert.locationDescription = alert.locationDescription;
 			updatedAlert.type = alert.type;
 			updatedAlert.publiclyVisible = alert.publiclyVisible;
 			

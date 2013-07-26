@@ -17,7 +17,7 @@ public class AlertMessage extends Model {
 	public Alert alert;
     
     @Column(columnDefinition="TEXT")
-    public String description;
+    public String generalDescription;
     
     @ManyToOne
     public Account account;

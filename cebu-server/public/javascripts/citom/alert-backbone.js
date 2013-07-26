@@ -7,7 +7,8 @@ var AlertTypes = [{id: 'incident', name: 'Traffic Incident'},
                   {id: 'fire', name: 'Fire'},
                   {id: 'trafficlight', name: 'Traffic Signal Problem'},
                   {id: 'construction', name: 'Road Construction'},
-                  {id: 'flood', name: 'Flood'}];
+                  {id: 'flood', name: 'Flood'},
+                  {id: 'other', name: 'Other'}];
 
 Handlebars.registerHelper('alert_options', function(test) {
     var ret = '';
@@ -56,8 +57,8 @@ var Alert = Backbone.Model.extend({
       publiclyVisible: null,
       locationLat: null,
       locationLon: null,
-      description: null,
-      publicDescription: null,
+      generalDescription: null,
+      locationDescription: null,
       account: null
     },
 
@@ -400,8 +401,8 @@ var AlertEditorView = Backbone.View.extend({
                     publiclyVisible: this.$("#publiclyVisible").is(':checked'),
                     locationLat: this.model.attributes.locationLat,
                     locationLon: this.model.attributes.locationLon,
-                    description: this.$("#description").val(),
-                    publicDescription: this.$("#publicDescription").val()
+                    generalDescription: this.$("#generalDescription").val(),
+                    locationDescription: this.$("#locationDescription").val()
       };
 
       if(this.model.id)

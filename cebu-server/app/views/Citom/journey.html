@@ -10,10 +10,10 @@
 </script>
 
 <script id="incident" type="text/html">
-<p><strong>{{ description }}</strong><br/> ({{ timestamp }})</p>
+<p><strong>{{ generalDescription }}</strong><br/> ({{ timestamp }})</p>
 <ul>
 {{#messages}}
-  <b>{{description}}</b><br/>
+  <b>{{generalDescription}}</b><br/>
 	 ({{ timestamp }})
  <hr/>
 {{/messages}}

@@ -22,10 +22,10 @@ public class Alert extends Model {
     public Double locationLon;
     
     @Column(columnDefinition="TEXT")
-    public String description;
+    public String generalDescription;
 
     @Column(columnDefinition="TEXT")
-    public String publicDescription;
+    public String locationDescription;
     
     @ManyToOne
     public Account account;

@@ -71,7 +71,7 @@ function updateIncidents()
 			continue;
 
 		incidentMarkers[indcidentData[incident].id] = new L.Marker(new L.LatLng(indcidentData[incident].location_lat.toFixed(5), indcidentData[incident].location_lon.toFixed(5)), {icon: icon});
-		incidentMarkers[indcidentData[incident].id].bindPopup(indcidentData[incident].description);
+		incidentMarkers[indcidentData[incident].id].bindPopup(indcidentData[incident].generalDescription);
 		
 		
 		incidentLayer.addLayer(incidentMarkers[indcidentData[incident].id]);
