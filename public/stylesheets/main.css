@@ -1,0 +1,79 @@
+.editor-content .well {
+	position: fixed;
+	top: 50px;
+	overflow: scroll;
+	height: 100%;
+	height: -webkit-calc(100% - 80px);
+	height: -calc(100% - 80px);
+	max-height: 508px;
+	width: 300px;
+}
+
+.filter-content .well {
+	position: fixed;
+	top: 50px;
+	overflow: scroll;
+	height: 100%;
+	height: -webkit-calc(100% - 80px);
+	height: -calc(100% - 80px);
+	max-height: 400px;
+}
+
+.modes {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+#modes_header {
+	height:30px;
+	margin-left: 0px;
+}
+
+#people_header {
+	height:40px;
+	margin-left: 0px;
+}
+
+
+.modes_header_label {
+	display: inline;
+}
+
+#modes_hidden, #people_hidden {
+	display: none;
+}
+
+#hideFromMaplabel, #hideFromMap {
+	display: inline;
+}
+
+#hideFromMap_hidden {
+	display: none;
+	float: right;
+}
+#publiclyVisible, #publiclyVisiblelabel, .people_header_label {
+	display: inline;
+}
+
+.personlabel, #hitRunlabel, #weatherlabel {
+	display: inline-block;
+	width: 120px;
+}
+
+#s2id_mode1, #s2id_mode2, #s2id_mode3, #s2id_mode4 {
+	width: 150px;
+}
+
+#s2id_person1age, #s2id_person1gender, #s2id_person1injury, #s2id_person2age, #s2id_person2gender, #s2id_person2injury, 
+#s2id_person3age, #s2id_person3gender, #s2id_person3injury, #s2id_person4age, #s2id_person4gender, #s2id_person4injury {
+	display: inline-block;
+	width: 150px;
+}
+
+.select2-container {
+	margin-bottom: 9px;
+}
+
+#showModes, #showPeople {
+	float:right;
+}

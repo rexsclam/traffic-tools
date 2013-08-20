@@ -1,0 +1,383 @@
+#{extends 'main.html' /}
+
+#{set page:'citom' /}
+
+<style>.alertdrop.select2-container .select2-results {max-height: 300px;}</style>
+
+<script id="incident-edit-tpl" type="text/html">
+
+
+	
+<div class="well well-small tabbable">
+	<strong>Create/Edit Alert</strong> <div id="hideFromMap_hidden"><label id="hideFromMaplabel" for="hideFromMap"><strong>Hide from map?</strong></label>
+				<input type="checkbox" id="hideFromMap" {{#if hideFromMap}}checked{{/if}}/></div>
+	<hr style="margin: 5px 0;">
+	
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">General</a></li>
+		<li><a href="#tab2" data-toggle="tab">Modes/People</a></li>
+		<li><a href="#tab3" data-toggle="tab">Specific</a></li>
+	</ul>
+	
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab1">
+			<div class="row-fluid">
+				<label for="title"><strong>Title</strong></label>
+				<input class="span11" type="text" id="title" value="{{ title }}" placeholder="Title..."/>
+				
+				<label for="type"><strong>Type</strong></label>
+				<select id="type" style="width:220px;">
+					{{alert_options type}}
+				</select>
+				
+				<div>
+				<label id="publiclyVisiblelabel" for="publiclyVisible"><strong>Publicly Visible?</strong></label>
+				<input type="checkbox" id="publiclyVisible" {{#if publiclyVisible}}checked{{/if}}/>
+				</div>
+				
+				<label for="generalDescription"><strong>General Description</strong></label>
+				<textarea class="span11"  id="generalDescription" placeholder="General description...">{{ generalDescription }}</textarea>
+				
+				<label for="locationDescription"><strong>Location Description</strong></label>
+				<textarea class="span11" id="locationDescription" placeholder="Location description...">{{ locationDescription }}</textarea>
+				
+				<!--
+				<strong>Publicly Visible</strong> <input type="checkbox" id="publiclyVisible" {{#if publiclyVisible}}checked{{/if}}/>
+				<br/>
+				<strong>CITOM Description</strong><br/>
+				<textarea class="span11"  id="description" placeholder="CITOM description...">{{ description }}</textarea>
+				<strong>Public Description</strong><br/>
+				<textarea class="span11" id="publicDescription" placeholder="Public description...">{{ publicDescription }}</textarea>
+				-->
+				<!--
+				
+				-->
+				<!--
+				
+				-->
+			</div>
+			<div class="row-fluid">
+				
+				<div class="span6">
+					<strong>From</strong><br/>
+						
+					<div class="input-append date" id="datepickerFrom">
+					  <input class="span8" size="16" type="text">
+					  <span class="add-on"><i class="icon-th"></i></span>
+					</div>
+		
+					<div  class="input-append bootstrap-timepicker">
+				        <input  class="span8" type="text" class="input-small" id="timepickerFrom">
+				        <span class="add-on"><i class="icon-time"></i></span>
+				    </div>
+				    <button  class="btn btn-mini" id="fromNow">Now</button>
+				</div>
+		
+				<div class="span6">
+					<strong>To</strong> 
+					<div class="input-append date" id="datepickerTo">
+					  <input class="span8" size="16" type="text" >
+					  <span class="add-on"><i class="icon-th"></i></span>
+					</div>
+		
+					<div class="input-append bootstrap-timepicker" >
+				        <input  class="span8"type="text" class="input-small" id="timepickerTo">
+				        <span class="add-on"><i class="icon-time"></i></span>
+				    </div>
+				    <button  class="btn btn-mini" id="toNow">Now</button>
+				    <button  class="btn btn-mini" id="toClear">Clear</button>
+			    </div>
+			</div>
+    
+			
+		</div>
+		<div class="tab-pane" id="tab2">
+			<div class="row-fluid">
+				<div id="modes_header" class="span11">
+					<label class="modes_header_label" for="mode1"><strong>Modes Involved</strong></label>
+					<button name="showModes" id="showModes" type="button" value="moremodes" class="btn">Add Modes</button>
+				</div>
+					
+				<div id="modes_shown">
+					<div class="modes">
+						<label for="mode1" class="modelabel">Mode 1</label>
+						<select id="mode1">
+							{{mode_options mode1}}
+						</select>
+					</div>
+					<div class="modes">
+						<label for="mode2" class="modelabel">Mode 2</label>
+						<select id="mode2">
+							{{mode_options mode2}}
+						</select>
+					</div>
+				</div>
+						
+				<div id="modes_hidden">
+					<div class="modes">
+						<label for="mode3" class="modelabel">Mode 3</label>
+						<select id="mode3">
+							{{mode_options mode3}}
+						</select>
+					</div>
+					<div class="modes">
+						<label for="mode4" class="modelabel">Mode 4</label>
+						<select id="mode4">
+							{{mode_options mode4}}
+						</select>
+					</div>
+				</div>
+						
+				<div id="people_header" class="span11">
+					<label class="people_header_label" for="person1"><strong>People Involved</strong></label>
+					<button name="showPeople" id="showPeople" type="button" value="morepeople" class="btn">Add People</button>
+				</div>
+						
+				<div id="people_shown">
+					<div class="people">
+						<label for="person1" class="personlabel"><strong>Person 1</strong></label>
+						<div>
+						<label for="person1age" class="personlabel">Age</label>
+						<select id="person1age">
+							{{age_options person1age}}
+						</select>
+						</div>
+						<!--<input class="span2 age" type="text" id="person1age" value="{{ person1age }}"/>-->
+						<div>
+						<label for="person1gender" class="personlabel">Gender</label>
+						<select id="person1gender">
+							{{gender_options person1gender}}
+						</select>
+						</div>
+						<!--<input class="gender" id="person1male" type="radio" name="sex" value="male"> M
+						<input class="gender" id="person1female" type="radio" name="sex" value="female"> F-->
+						<div>
+						<label for="person1injury" class="personlabel">Injury</label>
+						<select id="person1injury">
+							{{injury_options person1injury}}
+						</select>
+						</div>
+					</div>
+					<div class="people">
+						<label for="person2" class="personlabel"><strong>Person 2</strong></label>
+						<div>
+						<label for="person2age" class="personlabel">Age</label>
+						<select id="person2age">
+							{{age_options person1age}}
+						</select>
+						</div>
+						<div>
+						<label for="person2gender" class="personlabel">Gender</label>
+						<select id="person2gender">
+							{{gender_options person2gender}}
+						</select>
+						</div>
+						<div>
+						<label for="person2injury" class="personlabel">Injury</label>
+						<select id="person2injury">
+							{{injury_options person2injury}}
+						</select>
+						</div>
+					</div>
+				</div>
+				<div id="people_hidden">
+					<div class="people">
+						<label for="person3" class="personlabel"><strong>Person 3</strong></label>
+						<div>
+						<label for="person3age" class="personlabel">Age</label>
+						<select id="person3age">
+							{{age_options person3age}}
+						</select>
+						</div>
+						<div>
+						<label for="person3gender" class="personlabel">Gender</label>
+						<select id="person3gender">
+							{{gender_options person3gender}}
+						</select>
+						</div>
+						<div>
+						<label for="person3injury" class="personlabel">Injury</label>
+						<select id="person3injury">
+							{{injury_options person3injury}}
+						</select>
+						</div>
+					</div>
+					<div class="people">
+						<label for="person4" class="personlabel"><strong>Person 4</strong></label>
+						<div>
+						<label for="person4age" class="personlabel">Age</label>
+						<select id="person4age">
+							{{age_options person4age}}
+						</select>
+						</div>
+						<div>
+						<label for="person4gender" class="personlabel">Gender</label>
+						<select id="person4gender">
+							{{gender_options person4gender}}
+						</select>
+						</div>
+						<div>
+						<label for="person4injury" class="personlabel">Injury</label>
+						<select id="person4injury">
+							{{injury_options person4injury}}
+						</select>
+						</div>
+					</div>
+				</div>
+				<div style="height: 50px;">
+				</div>
+			</div> <!-- end row-fluid -->
+		</div> <!-- end tab2 -->
+		<div class="tab-pane" id="tab3">
+			<div class="row-fluid">
+				<label for="logBook"><strong>Log Book Entry</strong></label>
+				<input class="span11" type="text" id="logBook" value="{{ logBook }}" placeholder="Log book entry..." />
+				
+				<label id="hitRunlabel" for="hitRun"><strong>Hit and Run</strong></label>
+				<select id="hitRun" style="width:150px;">
+					{{hitrun_options hitRun}}
+				</select>
+				
+				<label id="weatherlabel" for="weather"><strong>Weather</strong></label>
+				<select id="weather" style="width:150px;">
+					{{weather_options weather}}
+				</select>
+				
+				<label for="trafficEnforcer"><strong>Name of Traffic Enforcer</strong></label>
+				<input class="span11" type="text" id="trafficEnforcer" value="{{ trafficEnforcer }}" placeholder="Name of Traffic Enforcer..." />
+				
+				<label for="dataEntryPerson"><strong>Name of Data Entry Person</strong></label>
+				<input class="span11" type="text" id="dataEntryPerson" value="{{ dataEntryPerson }}" placeholder="Name of Data Entry Person..." />
+				
+				<label for="internalNotes"><strong>Internal Notes (Private Only)</strong></label>
+				<textarea class="span11" id="internalNotes" placeholder="Private Description...">{{ internalNotes }}</textarea>
+				
+				<hr style="margin: 5px 0;">
+				<button  class="btn btn-primary" id="save">Save</button> <button class="btn" id="cancel">Cancel</button>
+			</div>
+		</div>
+	</div> <!-- end tab-content -->
+</div> <!-- end tabbable -->
+
+</script>
+
+<script id="incident-view-popup-tpl" type="text/html">
+<div>
+
+	
+	<!--<h3><img src="/public/images/alert_icons/{{ type }}.png"> {{ title }}</h3>-->
+	<h3> {{ title }} </h3>
+	<strong>Type:</strong> {{alertType type}}<br/>
+	<strong>Publicly Visible:</strong> {{#if publiclyVisible}}Yes{{else}}No{{/if}}<br/>
+	<strong>General Description:</strong> {{generalDescription}}<br/>
+	<strong>Location Description:</strong> {{locationDescription}}<br/>
+	<strong>Active From:</strong> {{formatDate activeFrom }}<br/>
+	<strong>Active To:</strong> {{formatDate activeTo }}<br/>
+	{{#if messages }}
+		<strong>Messages:</strong>
+		<div  class="row-fluid" style="max-height: 100px; overflow:auto;">
+			
+
+			{{#messages}}
+				
+
+				<em>{{formatDate timestamp }}</em> ({{ account }}) <br/>
+				{{ messageText }}
+				<hr style="margin: 5px 0;">
+			{{/messages}}
+		</div>
+		<br/>
+	{{/if}}	
+	
+
+	<textarea id="message" placeholder="Message..."></textarea>
+	<br/>
+
+	<button  class="btn pull-right" id="editAlert">Edit Alert</button>
+	<button  class="btn btn-primary" id="sendMessage">Save Message</button>
+</div>
+</script>
+
+
+<script id="alert-filter-tpl" type="text/html">
+	<div class="well well-small">
+			
+		<strong>Traffic Alerts</strong> <!-- <a href="#" style="float: right;">Generate Report</a>  -->
+		
+		<p>Right-click map to add an alert.</p>
+		
+		<hr style="margin: 5px 0;">
+		
+		<div class="row-fluid">
+			<strong>Filter</strong>
+			<div data-toggle-name="showToggle" class="btn-group" data-toggle-name="is_private" data-toggle="buttons-radio" style="padding-bottom: 10px;" >
+					<button name="fitlerActive" id="showAll" type="button" value="all" class="btn">All</button>
+					<button name="fitlerActive" id="showActive" value="active" class="btn active">Active</button>
+			</div>
+
+			<input type="text" id="query" placeholder="keywords"/>
+		</div>
+
+		<div class="row-fluid">
+		<strong>Type</strong><br/>
+		<select id="typeFilter" style="width:220px;">
+			<option value="" selected="selected">All Types</option>
+			{{alert_options type}}
+		</select>
+		</div>
+
+
+		<hr style="margin: 5px 0;">
+
+		<div class="row-fluid" id="dataRangeFilter">
+			<strong>Date Range</strong><br/>
+			
+
+			<div class="input-append date" id="dateFrom">
+			  <input class="span5" size="16" type="text">
+			  <span class="add-on"><i class="icon-th"></i></span>
+			</div>
+			<div class="input-append date" id="dateTo">
+			  <input class="span5" size="16" type="text">
+			  <span class="add-on"><i class="icon-th"></i></span>
+			</div>
+
+
+			<button  class="btn btn-mini" id="filterToday">Today</button> <button  class="btn btn-mini" id="filterYesterday">Yesterday</button> <button  class="btn btn-mini" id="filterThisWeek">This Week</button>
+			<hr style="margin: 5px 0;">
+
+		</div>
+		<button id="updateFilter" class="btn btn-primary">Filter</button> <button id="downloadCsv" class="btn">Download Report</button>
+		
+		<hr style="margin: 5px 0;">
+		
+		<strong>Current Conditions</strong> <input type="checkbox" id="currentConditions"/> <!-- <a href="#" style="float: right;">Generate Report</a>  -->
+		
+		<table>
+			<tr><td style="background-color: red;">&nbsp;</td><td>&nbsp;&lt; 25km/h</td></tr>
+			<tr><td style="background-color: yellow;">&nbsp;</td><td>&nbsp;25-35km/h</td></tr>
+			<tr><td style="background-color: green;">&nbsp;</td><td>&nbsp;&gt; 35km/h</td></tr>
+		</table>
+
+	</div>
+</script>
+
+
+
+<div class="row-fluid" style="background-color: #fff;  position: relative;">
+
+	<div id="map">
+	</div>
+	
+	<div id="alertFilter" style="position: absolute; top:10px; right:10px; width:250px;">
+		
+	
+	</div>	
+
+	<div id="alertEditor" style="position: absolute; top:10px; left:50px; width:325px;">
+		
+	</div> 	
+</div>
+
+#{script "citom/alert-backbone.js"/}
+#{script "citom/alert-map.js"/}
