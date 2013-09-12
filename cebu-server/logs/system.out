@@ -1,0 +1,77 @@
+Listening for transport dt_socket at address: 8000
+23:58:26,878 INFO  ~ Starting /Users/rexsclam/traffic-tools/cebu-server
+23:58:26,883 INFO  ~ Module secure is available (/Applications/play-1.2.4/modules/secure)
+23:58:28,190 WARN  ~ You're running Play! in DEV mode
+23:58:28,653 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+23:58:40,271 ERROR ~ Cannot connected to the database : Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+org.postgresql.util.PSQLException: Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:123)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:66)
+	at org.postgresql.jdbc2.AbstractJdbc2Connection.<init>(AbstractJdbc2Connection.java:124)
+	at org.postgresql.jdbc3.AbstractJdbc3Connection.<init>(AbstractJdbc3Connection.java:30)
+	at org.postgresql.jdbc4.AbstractJdbc4Connection.<init>(AbstractJdbc4Connection.java:29)
+	at org.postgresql.jdbc4.Jdbc4Connection.<init>(Jdbc4Connection.java:24)
+	at org.postgresql.Driver.makeConnection(Driver.java:386)
+	at org.postgresql.Driver.connect(Driver.java:260)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:90)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:480)
+	at play.Play.start(Play.java:515)
+	at play.Play.detectChanges(Play.java:618)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:382)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:241)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:228)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:431)
+	at java.net.Socket.connect(Socket.java:527)
+	at java.net.Socket.connect(Socket.java:476)
+	at java.net.Socket.<init>(Socket.java:373)
+	at java.net.Socket.<init>(Socket.java:187)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:62)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:77)
+	... 15 more
+23:58:42,211 ERROR ~ 
+
+@6f2cdoe57
+Internal Server Error (500) for request GET /
+
+Database error
+A database error occured : Cannot connected to the database, Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+
+play.exceptions.DatabaseException: Cannot connected to the database, Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:142)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:480)
+	at play.Play.start(Play.java:515)
+	at play.Play.detectChanges(Play.java:618)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.postgresql.util.PSQLException: Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:123)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:66)
+	at org.postgresql.jdbc2.AbstractJdbc2Connection.<init>(AbstractJdbc2Connection.java:124)
+	at org.postgresql.jdbc3.AbstractJdbc3Connection.<init>(AbstractJdbc3Connection.java:30)
+	at org.postgresql.jdbc4.AbstractJdbc4Connection.<init>(AbstractJdbc4Connection.java:29)
+	at org.postgresql.jdbc4.Jdbc4Connection.<init>(Jdbc4Connection.java:24)
+	at org.postgresql.Driver.makeConnection(Driver.java:386)
+	at org.postgresql.Driver.connect(Driver.java:260)
+	at java.sql.DriverManager.getConnection(DriverManager.java:582)
+	at java.sql.DriverManager.getConnection(DriverManager.java:185)
+	at play.db.DBPlugin.onApplicationStart(DBPlugin.java:90)
+	... 5 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:382)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:241)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:228)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:431)
+	at java.net.Socket.connect(Socket.java:527)
+	at java.net.Socket.connect(Socket.java:476)
+	at java.net.Socket.<init>(Socket.java:373)
+	at java.net.Socket.<init>(Socket.java:187)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:62)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:77)
+	... 15 more

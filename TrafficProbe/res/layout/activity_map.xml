@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+       android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+		android:id="@+id/mainMapView" />
+
+    <RelativeLayout
+        android:id="@+id/Rel"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tbl"
+        android:orientation="vertical" >
+        
+        <ImageButton
+            android:id="@+id/toggleOverlay"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+           	android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:onClick="toggleOverlay"
+            android:src="@drawable/pushpin"
+            android:text="Button" />
+
+        <ImageButton
+            android:id="@+id/centerButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:onClick="centerView"
+            android:src="@drawable/center"
+            android:text="Button" />
+
+        <ImageButton
+            android:id="@+id/panicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:src="@drawable/panic_gray" />
+           
+     </RelativeLayout>
+
+</RelativeLayout>
