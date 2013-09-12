@@ -50,6 +50,9 @@ public class AlertSimple {
     public String person4gender;
     public String person4injury;
     
+    public String totalInjuries;
+    public String totalFatalities;
+    
     public String logBook;
     public String hitRun;
     public String weather;
@@ -95,6 +98,8 @@ public class AlertSimple {
 		this.person4age = alert.person4age;
 		this.person4gender = alert.person4gender;
 		this.person4injury = alert.person4injury;
+		this.totalInjuries = alert.totalInjuries;
+		this.totalFatalities = alert.totalFatalities;
 		this.logBook = alert.logBook;
 		this.hitRun = alert.hitRun;
 		this.weather = alert.weather;

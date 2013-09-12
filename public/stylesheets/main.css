@@ -55,7 +55,7 @@
 	display: inline;
 }
 
-.personlabel, #hitRunlabel, #weatherlabel {
+.personlabel, #hitRunlabel, #weatherlabel, #totalInjurieslabel, #totalFatalitieslabel {
 	display: inline-block;
 	width: 120px;
 }
@@ -65,7 +65,7 @@
 }
 
 #s2id_person1age, #s2id_person1gender, #s2id_person1injury, #s2id_person2age, #s2id_person2gender, #s2id_person2injury, 
-#s2id_person3age, #s2id_person3gender, #s2id_person3injury, #s2id_person4age, #s2id_person4gender, #s2id_person4injury {
+#s2id_person3age, #s2id_person3gender, #s2id_person3injury, #s2id_person4age, #s2id_person4gender, #s2id_person4injury, #totalInjuries, #totalFatalities {
 	display: inline-block;
 	width: 150px;
 }

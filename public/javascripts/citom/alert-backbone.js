@@ -12,9 +12,11 @@ var AlertTypes = [{id: '', name: ''},
                   {id: 'other_alert', name: 'Other'}];
 
 var ModeTypes = [{id: '', name: ''},
-                 {id: 'vehicle', name: 'Vehicle'},
+                 {id: 'sedan', name: 'Sedan'},
+                 {id: 'van', name: 'Van'},
+                 {id: 'truck', name: 'Truck'},
                   {id: 'taxi', name: 'Taxi'}, 
-                  {id: 'puj', name: 'PUJ'},
+                  {id: 'microbus_puj', name: 'Microbus/PUJ'},
                   {id: 'pedestrian', name: 'Pedestrian'},
                   {id: 'bicycle', name: 'Bicycle'},
                   {id: 'motorcycle', name: 'Motorcyle'},
@@ -212,6 +214,8 @@ var Alert = Backbone.Model.extend({
 	    person4age: null,
 	    person4gender: null,
 	    person4injury: null,
+	    totalInjuries: null,
+	    totalFatalities: null,
 	    logBook: null,
 	    hitRun: null,
 	    weather: null,
@@ -379,14 +383,14 @@ var AlertFilterView = Backbone.View.extend({
       this.dateTo.datepicker('setDate', now.toDate());
       this.dateFrom.datepicker('setDate', week.toDate());
     },
-
+    /*
     thisWeek: function() {
       var now = moment();
       var week = moment().subtract('days', 7);
       this.dateTo.datepicker('setDate', now.toDate());
       this.dateFrom.datepicker('setDate', week.toDate());
     },
-
+	*/
     render: function () {
 
       data = {type: null}
@@ -557,13 +561,9 @@ var AlertEditorView = Backbone.View.extend({
     },
 
     save: function() {
-      //alert("hi");
-      //alert($('#publiclyVisible').is(':checked'));
-      //alert($('#hideFromMap').is(':checked'));
       
       var fd = this.dateFrom.data('datepicker').date;
       var td = this.dateTo.data('datepicker').date;
-
 
       var ftHour = this.timeFrom.data('timepicker').hour;
       var ftMinute = this.timeFrom.data('timepicker').minute;
@@ -574,7 +574,7 @@ var AlertEditorView = Backbone.View.extend({
       var ttMeridian = this.timeTo.data('timepicker').meridian;
 
       var fromTimestamp = moment(moment(fd).format("YYYY-MM-DD") + " " + ftHour + ":" + ftMinute + " " + ftMeridian, "YYYY-MM-DD hh:mm a");
-
+      
       var toTimestamp; 
 
       if(this.$("#datepickerTo input").val() != "" || this.$("#timepickerTo").val() != "" )
@@ -611,11 +611,14 @@ var AlertEditorView = Backbone.View.extend({
                     person4age: this.$("#person4age").val(),
                     person4gender: this.$("#person4gender").val(),
                     person4injury: this.$("#person4injury").val(),
+                    totalInjuries: this.$("#totalInjuries").val(),
+                    totalFatalities: this.$("#totalFatalities").val(),
                     logBook: this.$("#logBook").val(),
                     hitRun: this.$("#hitRun").val(),
                     weather: this.$("#weather").val(),
                     trafficEnforcer: this.$("#trafficEnforcer").val(),
                     dataEntryPerson: this.$("#dataEntryPerson").val(),
+                    internalNotes: this.$("#internalNotes").val(),
                     hideFromMap: this.$("#hideFromMap").is(':checked')
                     
       };
@@ -694,7 +697,6 @@ var AlertEditorView = Backbone.View.extend({
     render: function () {
 
       this.$el.html(this.alertEditorTemplate(this.model.attributes));
-      //alert(this.model.attributes.mode1);
       this.finalize();
       return this;
     },
@@ -911,22 +913,6 @@ var AlertMapView = Backbone.View.extend({
       if(opts.collection == undefined)
           this.collection = new AlertCollection({success: this.onCollectionUpdate});
       
-      
-      //alert(this.collection.models[0].attributes.hideFromMap);
-      /*
-      this.collection.each(function(model, i) {
-      	
-  		if(this.alertLayers[model.id] == undefined)
-  			this.onModelAdd(model);
-  		else
-  			this.onModelChange(model);
-
-          removeList[model.id] = false;
-        }, this);
-
-        
-      },
-      */
       // Marker caches
       this.alertLayers = {};
 
@@ -1085,11 +1071,7 @@ var AlertMapView = Backbone.View.extend({
       if(this.alertLayers[model.id] == undefined)
         this.onModelAdd(model);
       
-      //for (var name in model.attributes.hideFromMap)
-      //alert(name);
-      
       if(model.attributes.hideFromMap == false || model.attributes.hideFromMap == null) {
-    	  //alert("onMap");
       // move marker
     	this.alertLayers[model.id].setLatLng([model.get('locationLat'), model.get('locationLon')]);
 
@@ -1098,7 +1080,6 @@ var AlertMapView = Backbone.View.extend({
       }
       
       else {
-    	  //alert("offMap");
     	  this.onModelRemove(model);
       }
     },

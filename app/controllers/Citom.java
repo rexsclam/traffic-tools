@@ -245,13 +245,13 @@ public class Citom extends Controller {
 			StringWriter csvString = new StringWriter();
 			CSVWriter csvWriter = new CSVWriter(csvString);
 			
-			String[] headerBase = "user,title,type,publiclyVisible,generalDescription,locationDescription,lat,lon,activeFrom,activeTo,mode1,mode2,mode3,mode4,person1age,person1gender,person1injury,person2age,person2gender,person2injury,person3age,person3gender,person3injury,person4age,person4gender,person4injury,logBook,hitRun,weather,trafficEnforcer,dataEntryPerson,internalNotes,hideFromMap".split(",");
+			String[] headerBase = "user,title,type,publiclyVisible,generalDescription,locationDescription,lat,lon,activeFrom,activeTo,mode1,mode2,mode3,mode4,person1age,person1gender,person1injury,person2age,person2gender,person2injury,person3age,person3gender,person3injury,person4age,person4gender,person4injury,totalInjuries,totalFatalities,logBook,hitRun,weather,trafficEnforcer,dataEntryPerson,internalNotes,hideFromMap".split(",");
 			
 			csvWriter.writeNext(headerBase);
 			 
 			for(Alert alert : alerts)
 			{
-				String[] dataFields = new String[33];
+				String[] dataFields = new String[35];
 				dataFields[0] = alert.account.username;
 				if(alert.title != null)
 					dataFields[1] = alert.title;
@@ -294,28 +294,36 @@ public class Citom extends Controller {
 				dataFields[23] = alert.person4age;
 				dataFields[24] = alert.person4gender;
 				dataFields[25] = alert.person4injury;
-				if(alert.logBook != null)
-					dataFields[26] = alert.logBook;
+				if(alert.totalInjuries != null)
+					dataFields[26] = alert.totalInjuries;
 				else
 					dataFields[26] = "";
-				dataFields[27] = alert.hitRun;
-				dataFields[28] = alert.weather;
+				if(alert.totalFatalities != null)
+					dataFields[27] = alert.totalFatalities;
+				else
+					dataFields[27] = "";
+				if(alert.logBook != null)
+					dataFields[28] = alert.logBook;
+				else
+					dataFields[28] = "";
+				dataFields[29] = alert.hitRun;
+				dataFields[30] = alert.weather;
 				if(alert.trafficEnforcer != null)
-					dataFields[29] = alert.trafficEnforcer;
-				else
-					dataFields[29] = "";
-				if(alert.dataEntryPerson != null)
-					dataFields[30] = alert.dataEntryPerson;
-				else
-					dataFields[30] = "";
-				if(alert.internalNotes != null)
-					dataFields[31] = alert.internalNotes;
+					dataFields[31] = alert.trafficEnforcer;
 				else
 					dataFields[31] = "";
-				if(alert.hideFromMap != null)
-					dataFields[32] = alert.hideFromMap.toString();
+				if(alert.dataEntryPerson != null)
+					dataFields[32] = alert.dataEntryPerson;
 				else
 					dataFields[32] = "";
+				if(alert.internalNotes != null)
+					dataFields[33] = alert.internalNotes;
+				else
+					dataFields[33] = "";
+				if(alert.hideFromMap != null)
+					dataFields[34] = alert.hideFromMap.toString();
+				else
+					dataFields[34] = "";
 				
 				csvWriter.writeNext(dataFields);
 				
@@ -545,6 +553,8 @@ public static void alertsCsv(Boolean active, String filter, String fromDate, Str
 			newAlert.person4age = alert.person4age;
 			newAlert.person4gender = alert.person4gender;
 			newAlert.person4injury = alert.person4injury;
+			newAlert.totalInjuries = alert.totalInjuries;
+			newAlert.totalFatalities = alert.totalFatalities;
 			newAlert.logBook = alert.logBook;
 			newAlert.hitRun = alert.hitRun;
 			newAlert.weather = alert.weather;
@@ -607,6 +617,8 @@ public static void alertsCsv(Boolean active, String filter, String fromDate, Str
 			updatedAlert.person4age = alert.person4age;
 			updatedAlert.person4gender = alert.person4gender;
 			updatedAlert.person4injury = alert.person4injury;
+			updatedAlert.totalInjuries = alert.totalInjuries;
+			updatedAlert.totalFatalities = alert.totalFatalities;
 			updatedAlert.logBook = alert.logBook;
 			updatedAlert.hitRun = alert.hitRun;
 			updatedAlert.weather = alert.weather;
@@ -614,21 +626,6 @@ public static void alertsCsv(Boolean active, String filter, String fromDate, Str
 			updatedAlert.dataEntryPerson = alert.dataEntryPerson;
 			updatedAlert.internalNotes = alert.internalNotes;
 			updatedAlert.hideFromMap = alert.hideFromMap;
-			
-			/*
-            updatedAlert.title = alert.title;
-			updatedAlert.locationLat = alert.locationLat;
-			updatedAlert.locationLon = alert.locationLon;
-			updatedAlert.generalDescription = alert.generalDescription;
-			updatedAlert.locationDescription = alert.locationDescription;
-			updatedAlert.mode1 = alert.mode1;
-			updatedAlert.mode2 = alert.mode2;
-			updatedAlert.type = alert.type;
-			updatedAlert.publiclyVisible = alert.publiclyVisible;
-			
-			updatedAlert.activeFrom = alert.activeFrom;
-			updatedAlert.activeTo = alert.activeTo;
-			*/	
 
 			updatedAlert.save();
 			

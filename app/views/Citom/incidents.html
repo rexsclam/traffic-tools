@@ -9,7 +9,7 @@
 
 	
 <div class="well well-small tabbable">
-	<strong>Create/Edit Alert</strong> <div id="hideFromMap_hidden"><label id="hideFromMaplabel" for="hideFromMap"><strong>Hide from map?</strong></label>
+	<strong>Create/Edit Alert</strong> <div id="hideFromMap_hidden"><label id="hideFromMaplabel" for="hideFromMap"><strong>Delete from map?</strong></label>
 				<input type="checkbox" id="hideFromMap" {{#if hideFromMap}}checked{{/if}}/></div>
 	<hr style="margin: 5px 0;">
 	
@@ -48,12 +48,6 @@
 				<textarea class="span11"  id="description" placeholder="CITOM description...">{{ description }}</textarea>
 				<strong>Public Description</strong><br/>
 				<textarea class="span11" id="publicDescription" placeholder="Public description...">{{ publicDescription }}</textarea>
-				-->
-				<!--
-				
-				-->
-				<!--
-				
 				-->
 			</div>
 			<div class="row-fluid">
@@ -142,15 +136,12 @@
 							{{age_options person1age}}
 						</select>
 						</div>
-						<!--<input class="span2 age" type="text" id="person1age" value="{{ person1age }}"/>-->
 						<div>
 						<label for="person1gender" class="personlabel">Gender</label>
 						<select id="person1gender">
 							{{gender_options person1gender}}
 						</select>
 						</div>
-						<!--<input class="gender" id="person1male" type="radio" name="sex" value="male"> M
-						<input class="gender" id="person1female" type="radio" name="sex" value="female"> F-->
 						<div>
 						<label for="person1injury" class="personlabel">Injury</label>
 						<select id="person1injury">
@@ -163,7 +154,7 @@
 						<div>
 						<label for="person2age" class="personlabel">Age</label>
 						<select id="person2age">
-							{{age_options person1age}}
+							{{age_options person2age}}
 						</select>
 						</div>
 						<div>
@@ -224,14 +215,21 @@
 						</div>
 					</div>
 				</div>
-				<div style="height: 50px;">
-				</div>
+				<label id="totallabel" for="totalInjuries"><strong>Totals</strong></label>
+				<label id="totalInjurieslabel" for="totalInjuries">Injuries</label>
+				<input class="span11" style="width: 150px;" type="text" id="totalInjuries" value="{{ totalInjuries }}" placeholder="e.g. 5..."/>
+				<label id="totalFatalitieslabel" for="totalFatalities">Fatalities</label>
+				<input class="span11" style="width: 150px;" type="text" id="totalFatalities" value="{{ totalFatalities }}" placeholder="e.g. 2..."/>
+				
 			</div> <!-- end row-fluid -->
 		</div> <!-- end tab2 -->
 		<div class="tab-pane" id="tab3">
 			<div class="row-fluid">
-				<label for="logBook"><strong>Log Book Entry</strong></label>
-				<input class="span11" type="text" id="logBook" value="{{ logBook }}" placeholder="Log book entry..." />
+				<label for="trafficEnforcer"><strong>Name of Traffic Enforcer</strong></label>
+				<input class="span11" type="text" id="trafficEnforcer" value="{{ trafficEnforcer }}" placeholder="Name of Traffic Enforcer..." />
+				
+				<label for="dataEntryPerson"><strong>Name of Data Entry Person</strong></label>
+				<input class="span11" type="text" id="dataEntryPerson" value="{{ dataEntryPerson }}" placeholder="Name of Data Entry Person..." />
 				
 				<label id="hitRunlabel" for="hitRun"><strong>Hit and Run</strong></label>
 				<select id="hitRun" style="width:150px;">
@@ -243,11 +241,8 @@
 					{{weather_options weather}}
 				</select>
 				
-				<label for="trafficEnforcer"><strong>Name of Traffic Enforcer</strong></label>
-				<input class="span11" type="text" id="trafficEnforcer" value="{{ trafficEnforcer }}" placeholder="Name of Traffic Enforcer..." />
-				
-				<label for="dataEntryPerson"><strong>Name of Data Entry Person</strong></label>
-				<input class="span11" type="text" id="dataEntryPerson" value="{{ dataEntryPerson }}" placeholder="Name of Data Entry Person..." />
+				<label for="logBook"><strong>Investigation Log Entry Number</strong></label>
+				<input class="span11" type="text" id="logBook" value="{{ logBook }}" placeholder="Investigation Log Entry Number..." />
 				
 				<label for="internalNotes"><strong>Internal Notes (Private Only)</strong></label>
 				<textarea class="span11" id="internalNotes" placeholder="Private Description...">{{ internalNotes }}</textarea>

@@ -52,6 +52,9 @@ public class Alert extends Model {
     public String person4gender;
     public String person4injury;
     
+    public String totalInjuries;
+    public String totalFatalities;
+    
     public String logBook;
     public String hitRun;
     public String weather;
